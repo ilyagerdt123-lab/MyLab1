@@ -1,7 +1,7 @@
 #include "Hero.h"
 #include <iostream>
 
-Hero::Hero() : name("unknown"), weapon("none"), skills() {
+Hero::Hero() : name("не изветен"), weapon("none"), skills() {
     std::cout << "Hero: default constructor\n";
 }
 
