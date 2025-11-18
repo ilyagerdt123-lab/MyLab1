@@ -7,7 +7,6 @@
 #include "Monster.h"
 #include "exceptions.h"
 
-
 void printMenu() {
     std::cout << "\n--- Меню (Вариант 5 — Герои/Злодеи/Монстры) ---\n";
     std::cout << "1. Добавить положительного героя\n";
@@ -42,6 +41,10 @@ static std::vector<std::string> readSkillsInteractive() {
 int main() {
     setlocale(LC_ALL, "Russian");
 
+    // Приветственный заголовок — мелкое улучшение, которое уместно для коммита
+    std::cout << "=== Лабораторная работа №1 — Вариант 5: Герои / Злодеи / Монстры ===\n";
+    std::cout << "Версия программы: 1.1\n";
+
     Keeper_v5 k;
     int choice = -1;
     while (choice != 0) {
@@ -62,6 +65,7 @@ int main() {
                 auto skills = readSkillsInteractive();
                 Hero* h = new Hero(name, weapon, skills);
                 k.add(h);
+                std::cout << "Герой добавлен.\n";
             }
             else if (choice == 2) {
                 std::string name, weapon, crime, location;
@@ -72,6 +76,7 @@ int main() {
                 auto skills = readSkillsInteractive();
                 Villain* v = new Villain(name, weapon, crime, location, skills);
                 k.add(v);
+                std::cout << "Злодей добавлен.\n";
             }
             else if (choice == 3) {
                 std::string name, desc;
@@ -79,6 +84,7 @@ int main() {
                 std::cout << "Описание внешнего вида: "; std::getline(std::cin, desc);
                 Monster* m = new Monster(name, desc);
                 k.add(m);
+                std::cout << "Монстр добавлен.\n";
             }
             else if (choice == 4) {
                 int n = k.getSize();
@@ -89,19 +95,17 @@ int main() {
                 }
             }
             else if (choice == 5) {
-                int idx; std::cout << "Индекс для удаления: "; std::cin >> idx; std::cin.ignore();
+                int idx; std::cout << "Индекс для удаления: "; std::cin >> idx; std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 k.removeAt(idx);
                 std::cout << "Удалено\n";
             }
             else if (choice == 6) {
-                std::string fname; std::cout << "Имя файла: "; std::getline(std::cin, fname);
+                std::string fname; std::cout << "Имя файла для сохранения: "; std::getline(std::cin, fname);
                 k.saveToFile(fname);
-                std::cout << "Сохранено\n";
             }
             else if (choice == 7) {
-                std::string fname; std::cout << "Имя файла: "; std::getline(std::cin, fname);
+                std::string fname; std::cout << "Имя файла для загрузки: "; std::getline(std::cin, fname);
                 k.loadFromFile(fname);
-                std::cout << "Загружено\n";
             }
             else if (choice == 0) {
                 std::cout << "Выход...\n";
