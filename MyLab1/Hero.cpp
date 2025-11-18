@@ -1,22 +1,22 @@
 #include "Hero.h"
 #include <iostream>
 
-Hero::Hero() : name("не изветен"), weapon("нет"), skills() {
-    std::cout << "Hero: default constructor\n";
+Hero::Hero() : name("unknown"), weapon("none"), skills() {
+    std::cout << "Hero: конструктор по умолчанию\n";
 }
 
 Hero::Hero(const std::string& name_, const std::string& weapon_, const std::vector<std::string>& skills_)
     : name(name_), weapon(weapon_), skills(skills_) {
-    std::cout << "Hero: parameter constructor\n";
+    std::cout << "Hero: параметрический конструктор\n";
 }
 
 Hero::Hero(const Hero& other)
     : name(other.name), weapon(other.weapon), skills(other.skills) {
-    std::cout << "Hero: copy constructor\n";
+    std::cout << "Hero: конструктор копирования\n";
 }
 
 Hero::~Hero() {
-    std::cout << "Hero: destructor\n";
+    std::cout << "Hero: деструктор\n";
 }
 
 void Hero::setName(const std::string& s) { name = s; }
@@ -27,7 +27,7 @@ void Hero::setSkills(const std::vector<std::string>& s) { skills = s; }
 std::vector<std::string> Hero::getSkills() const { return skills; }
 
 void Hero::print() const {
-    std::cout << "[Hero] " << name << ", weapon=" << weapon << ", skills={";
+    std::cout << "[Герой] " << name << ", оружие=" << weapon << ", навыки={";
     for (size_t i = 0; i < skills.size(); ++i) {
         std::cout << skills[i];
         if (i + 1 < skills.size()) std::cout << "; ";
